@@ -60,24 +60,26 @@ body {
 }
 
 .input-with-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Jarak antara elemen */
+  width: 100%;
+  justify-content: space-between; /* Membuat elemen terdistribusi merata */
 }
 
 .login-form input {
-    color: white;
-    margin: 10px 0;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    height: 10px;
-    background-color: rgba(170, 170, 170, 0.5);
-    flex: 1;
-    min-width: 0;
+  color: white;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  height: 12px; /* Sesuaikan tinggi input */
+  background-color: rgba(170, 170, 170, 0.5);
+  flex: 1; /* Input akan mengambil sisa ruang yang tersedia */
+  min-width: 0;
+  text-align: left; /* Teks placeholder berada di tengah */
 }
 
 /* From Uiverse.io by kheshore */ 
@@ -199,4 +201,21 @@ body {
     }
   }
   
-  
+  .input-with-btn .logout {
+    background-color: rgba(170, 170, 170, 0.5);
+    width: 32px;
+    border-radius: 50%;
+    height: 32px;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Efek shadow yang sama dengan tombol panah */
+}
+
+
+.input-with-btn .logout i {
+  font-size: 13px; /* Sesuaikan ukuran ikon */
+}
