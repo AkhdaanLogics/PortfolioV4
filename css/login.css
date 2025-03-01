@@ -13,203 +13,319 @@ body {
   background-position: center;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
 }
 
-.overlay {
-  position: absolute;
+/* Menu bar yang sudah dirapikan */
+.menu-bar {
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  backdrop-filter: blur(10px);
-  z-index: 1;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 2;
-}
-
-.login-container {
-  z-index: 1;
-}
-
-.login-form h5 {
-  text-align: center;
-  color: white;
-  margin-bottom: 12px;
-  font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-}
-
-.login-form img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.input-with-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Jarak antara elemen */
   width: 100%;
-  justify-content: space-between; /* Membuat elemen terdistribusi merata */
-}
-
-.login-form input {
-  color: white;
-  margin: 10px 0;
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  height: 12px; /* Sesuaikan tinggi input */
-  background-color: rgba(170, 170, 170, 0.5);
-  flex: 1; /* Input akan mengambil sisa ruang yang tersedia */
-  min-width: 0;
-  text-align: left; /* Teks placeholder berada di kiri */
-}
-
-/* From Uiverse.io by kheshore */ 
-.btn-conteiner {
+  height: 24px;
   display: flex;
-  justify-content: center;
-  align-items: center; /* Add this to center vertically */
-  height: 30px; /* Match the input height */
-  --color-text: #ffffff;
-  --color-background: rgba(170, 170, 170, 0.5);
-  --color-outline: #9ee5fa80;
-  --color-shadow: #00000080;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  font-family: 'San Francisco';
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.btn-content {
+.menu-left {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center content horizontally */
-  padding: 0px 3px;
-  height: 30px; /* Match input height */
+  padding-left: 10px;
+}
+
+.menu-left img {
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 15px;
+}
+
+.menu-left ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 18px;
+}
+
+.menu-left li {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.9);
+  transition: all 0.2s ease;
+}
+
+.menu-left li:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+.menu-left li a {
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
-  font-size: 25px;
-  color: var(--color-text);
-  background: var(--color-background);
-  transition: 1s;
-  border-radius: 100px;
-  box-shadow: 0 0 0.2em 0 var(--color-background);
+  color: inherit;
+  padding: 0 2px;
 }
 
-.btn-content:hover,
-.btn-content:focus {
-  transition: 0.5s;
-  -webkit-animation: btn-content 1s;
-  animation: btn-content 1s;
-  outline: 0.1em solid transparent;
-  outline-offset: 0.2em;
-  box-shadow: 0 0 0.4em 0 var(--color-background);
+.menu-left li a .active {
+  font-weight: 600;
 }
 
-.btn-content .icon-arrow {
-  transition: 0.5s;
-  margin-right: 0px;
-  transform: scale(0.6); /* Make the arrow smaller */
-}
-
-.btn-content:hover .icon-arrow {
-  transition: 0.5s;
-  margin-right: 8px;
-}
-
-.icon-arrow {
-  width: 20px;
-  height: 20px; /* Control height */
-  margin-left: 7px; /* Reduce left margin */
-  position: relative;
-  top: 0; /* Reset top position */
+.menu-right {
   display: flex;
   align-items: center;
+  padding-right: 16px;
+  gap: 12px;
+  justify-content: center;
 }
 
-.icon-arrow svg {
-  height: 40px; /* Control SVG height */
-  width: 40px; /* Control SVG width */
+.menu-right i {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  position: relative;
+  cursor: pointer;
 }
 
-/* SVG */
-#arrow-icon-one {
-  transition: 0.4s;
-  transform: translateX(-60%);
+/* Tooltip untuk status icon */
+.status-icon {
+  position: relative;
+  display: inline-block;
 }
 
-#arrow-icon-two {
-  transition: 0.5s;
-  transform: translateX(-30%);
+.status-icon .tooltip {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 1000;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  font-size: 12px;
+  pointer-events: none;
 }
 
-.btn-content:hover #arrow-icon-three {
-  animation: color_anim 1s infinite 0.2s;
+.status-icon:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
-.btn-content:hover #arrow-icon-one {
-  transform: translateX(0%);
-  animation: color_anim 1s infinite 0.6s;
+.menu-right .time {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.9);
+  margin-left: 4px;
 }
 
-.btn-content:hover #arrow-icon-two {
-  transform: translateX(0%);
-  animation: color_anim 1s infinite 0.4s;
+/* Dock styles yang sudah ada */
+.dock {
+  position: absolute;
+  width: auto;
+  max-width: 900px;
+  min-width: 320px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  margin-bottom: 12px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 18px;
+  gap: 10px;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* SVG animations */
-@keyframes color_anim {
-  0% {
-      fill: white;
-  }
-  50% {
-      fill: var(--color-background);
-  }
-  100% {
-      fill: #ff5f5f;
-  }
-}
-
-/* Button animations */
-@-webkit-keyframes btn-content {
-  0% {
-      outline: 0.2em solid var(--color-background);
-      outline-offset: 0;
-  }
-}
-
-@keyframes btn-content {
-  0% {
-      outline: 0.2em solid var(--color-background);
-      outline-offset: 0;
-  }
-}
-
-.input-with-btn .logout {
-  background-color: rgba(170, 170, 170, 0.5);
-  width: 32px;
-  border-radius: 50%;
-  height: 32px;
-  border: none;
-  color: white;
+.dock-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Efek shadow yang sama dengan tombol panah */
-  text-decoration: none; /* Menghilangkan underline default pada link */
+  height: 48px;
+  width: 48px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin: 0;
 }
 
-.input-with-btn .logout i {
-  font-size: 16px; /* Sesuaikan ukuran ikon */
+.dock-item:hover {
+  transform: scale(1.2);
+  margin: 0 8px;
+}
+
+.dock-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dock-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.2s ease;
+}
+
+.dock-item::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  width: 40px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0.5;
+}
+
+.separator {
+  width: 1px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+/* Gallery Section */
+.gallery-section {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 1000px;
+  height: 80%;
+  max-height: 600px;
+  z-index: 100;
+  animation: fadeIn 0.3s;
+}
+
+/* Window Controls */
+.window-controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.window-control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.window-control.close {
+  background-image: url('assets/gallery/window-controls.png');
+  background-size: cover;
+}
+
+/* Container untuk Sidebar dan Gallery Content */
+.container {
+  display: flex;
+  height: 100%;
+  padding-top: 30px; /* Ruang untuk window controls */
+}
+
+/* Sidebar (Navigation Pane) */
+.navigation-pane {
+  width: 200px; /* Lebar sidebar */
+  background-color: rgba(245, 245, 245, 0.9); /* Warna background sidebar */
+  border-right: 1px solid #ddd; /* Garis pemisah */
+  padding: 20px;
+}
+
+.navigation-pane ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation-pane li {
+  margin-bottom: 10px;
+}
+
+.navigation-pane a {
+  text-decoration: none;
+  color: #333;
+  font-family: 'San Francisco';
+  font-size: 14px;
+}
+
+.navigation-pane a:hover {
+  color: #0066cc;
+}
+
+/* Gallery Content */
+.gallery-content {
+  flex: 1; /* Mengisi sisa ruang */
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  height: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+/* Tombol Previous dan Next */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+  font-size: 18px;
+  color: #333;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
 }

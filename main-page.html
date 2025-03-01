@@ -97,16 +97,38 @@
         </div>
     </div>
 
-    <!-- Gallery Menu -->
-    <section id="gallery" class="gallery-section">
-        <div class="container">
-          <h2>My Projects</h2>
-          <div class="project-grid" id="project-container">
-            <!-- Projects will be loaded here dynamically -->
-          </div>
+    <!-- Gallery Section -->
+    <div class="gallery-section" id="gallery">
+        <!-- Window Controls -->
+        <div class="window-controls">
+            <img src="assets/gallery/window-controls.png" alt="Close" class="window-control close" onclick="closeGallery()">
         </div>
-      </section>
+        
+        <!-- Container untuk Sidebar dan Konten Gallery -->
+        <div class="container">
+            <!-- Sidebar (Navigation Pane) -->
+            <div class="navigation-pane">
+                <ul>
+                    <li><a href="#">Folder 1</a></li>
+                    <li><a href="#">Folder 2</a></li>
+                    <li><a href="#">Folder 3</a></li>
+                </ul>
+            </div>
+            
+            <!-- Konten Gallery (Slider) -->
+            <div class="gallery-content">
+                <div class="slider">
+                    <div class="slides" id="project-container">
+                        <!-- Slider items akan dimuat di sini -->
+                    </div>
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Launchpad Menu -->
     <div class="launchpad-menu" id="launchpad-menu">
         <div class="search-box">
             <input type="text" id="search-input" placeholder="Search">
