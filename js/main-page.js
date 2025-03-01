@@ -33,27 +33,28 @@ function updateBatteryStatus() {
 function updateWifiStatus() {
     const wifiIcon = document.getElementById('wifi');
     const wifiTooltip = document.getElementById('wifi-tooltip');
-    
-    // In a real application, you would check actual connection
-    // This is a simulation
-    const isConnected = true; 
-    const wifiLevel = 2; // Simulating Wi-Fi level (0: off, 1: low, 2: medium, 3: full)
-    const networkName = "Akhdaan WiFi"; // Example network name
-    
-    if (wifiLevel === 3) {
-        wifiIcon.className = "bi bi-wifi";
-        wifiTooltip.innerText = `Connected to ${networkName} (Excellent)`;
-    } else if (wifiLevel === 2) {
-        wifiIcon.className = "bi bi-wifi-2";
-        wifiTooltip.innerText = `Connected to ${networkName} (Good)`;
-    } else if (wifiLevel === 1) {
-        wifiIcon.className = "bi bi-wifi-1";
-        wifiTooltip.innerText = `Connected to ${networkName} (Weak)`;
+
+    // Check if the Network Information API is supported
+    if ('connection' in navigator) {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const isConnected = connection.effectiveType !== 'none';
+        const wifiLevel = connection.effectiveType; // Use effectiveType for connection quality
+        const networkName = connection.type; // Get the connection type
+
+        if (isConnected) {
+            wifiIcon.className = "bi bi-wifi";
+            wifiTooltip.innerText = `Connected to ${networkName} (${wifiLevel.charAt(0).toUpperCase() + wifiLevel.slice(1)})`;
+        } else {
+            wifiIcon.className = "bi bi-wifi-off";
+            wifiTooltip.innerText = "Wi-Fi: Disconnected";
+        }
     } else {
+        // Fallback for browsers that do not support the Network Information API
         wifiIcon.className = "bi bi-wifi-off";
         wifiTooltip.innerText = "Wi-Fi: Disconnected";
     }
 }
+
 
 // Check if connection status changes (simulated)
 function checkConnectionChanges() {
@@ -64,11 +65,19 @@ function checkConnectionChanges() {
     }, 10000); // Check every 10 seconds
 }
 
-setInterval(updateTime, 1000);
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('launchpad').addEventListener('click', function() {
+        const launchpadMenu = document.getElementById('launchpad-menu');
+        if (launchpadMenu.style.display === 'none' || launchpadMenu.style.display === '') {
+            launchpadMenu.style.display = 'block'; // Show the menu
+        } else {
+            launchpadMenu.style.display = 'none'; // Hide the menu
+        }
+    });
 
-window.onload = function() {
+    setInterval(updateTime, 1000);
     updateTime();
     updateBatteryStatus();
     updateWifiStatus();
     checkConnectionChanges();
-};
+});

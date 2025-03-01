@@ -129,6 +129,85 @@ body {
 }
 
 /* Dock styles yang sudah ada */
+
+/* Styles for Launchpad Menu */
+.launchpad-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 100;
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Max width for the menu */
+    animation: fadeIn 0.3s; /* Add fade-in animation */
+}
+
+/* Animation for showing the Launchpad menu */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.launchpad-item {
+    display: inline-block;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.launchpad-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.launchpad-item .search-box {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+    margin: 0 auto; /* Center the search box */
+    width: 300px; /* Set a specific width for the search box */
+
+
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.launchpad-item .search-box input {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.8);
+    font-family: 'San Francisco';
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.launchpad-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.launchpad-item p {
+    font-family: 'San Francisco';
+    font-size: 12px;
+    margin: 0;
+}
+
 .dock {
     position: absolute;
     width: auto;
