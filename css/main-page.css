@@ -18,21 +18,22 @@ body {
     overflow: hidden;
 }
 
-/* Perbaikan untuk menu bar */
+/* Menu bar yang sudah dirapikan */
 .menu-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 24px; /* Tinggi menu bar macOS yang tepat */
+    height: 24px;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Mengatur item agar berada di tengah secara vertikal */
+    align-items: center;
     padding: 0;
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
     z-index: 10;
     font-family: 'San Francisco';
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .menu-left {
@@ -42,7 +43,7 @@ body {
 }
 
 .menu-left img {
-    height: 16px; /* Ukuran logo Apple yang tepat */
+    height: 16px;
     width: auto;
     object-fit: contain;
     margin-right: 15px;
@@ -59,24 +60,72 @@ body {
 .menu-left li {
     font-size: 13px;
     color: rgba(0, 0, 0, 0.9);
+    transition: all 0.2s ease;
+}
+
+.menu-left li:hover {
+    color: rgba(0, 0, 0, 1);
 }
 
 .menu-left li a {
     text-decoration: none;
     color: inherit;
+    padding: 0 2px;
+}
+
+.menu-left li a .active {
+    font-weight: 600;
 }
 
 .menu-right {
     display: flex;
     align-items: center;
-    padding-right: 10px;
+    padding-right: 16px;
     gap: 12px;
+    justify-content: center;
 }
 
-.menu-right img {
-    height: 16px;
-    width: auto;
-    object-fit: contain;
+.menu-right i {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    cursor: pointer;
+}
+
+/* Tooltip untuk status icon */
+.status-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.status-icon .tooltip {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.status-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.menu-right .time {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.9);
+    margin-left: 4px;
 }
 
 /* Dock styles yang sudah ada */
@@ -219,6 +268,10 @@ body {
     
     .menu-left li {
         font-size: 11px;
+    }
+    
+    .menu-right {
+        gap: 8px;
     }
 }
 
