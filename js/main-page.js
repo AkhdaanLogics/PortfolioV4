@@ -3,6 +3,59 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchButton = document.getElementById('search-button');
     const launchpad = document.getElementById('launchpad');
     const launchpadMenu = document.getElementById('launchpad-menu');
+    const galleryMenuItem = document.querySelector('.menu-left li:nth-child(2) a'); // Select the Gallery menu item
+    const gallerySection = document.getElementById('gallery'); // Select the gallery section
+    const galleryDockItem = document.querySelector('.dock-item:nth-child(4) a'); // Gallery in dock
+    
+    const projects = [
+        {
+            title: "Project 1",
+            description: "Description of project 1",
+            image: "images/project1.jpg",
+            link: "https://project1-link.com"
+        },
+        {
+            title: "Project 2",
+            description: "Description of project 2",
+            image: "images/project2.jpg",
+            link: "https://project2-link.com"
+        },
+        {
+            title: "Project 3",
+            description: "Description of project 3",
+            image: "images/project3.jpg",
+            link: "https://project3-link.com"
+        }
+        // Add more projects as needed
+    ];
+
+    // Function to load projects into gallery
+    function loadProjects() {
+        // Get the project container
+        const projectContainer = document.getElementById('project-container');
+        
+        // Clear existing content if any
+        projectContainer.innerHTML = '';
+        
+        // Add projects to container
+        projects.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card';
+            
+            projectCard.innerHTML = `
+                <div class="project-image">
+                    <img src="${project.image}" alt="${project.title}">
+                </div>
+                <div class="project-details">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <a href="${project.link}" class="project-link">View Project</a>
+                </div>
+            `;
+            
+            projectContainer.appendChild(projectCard);
+        });
+    }
 
     function updateTime() {
         const now = new Date();
@@ -73,7 +126,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Handle klik Launchpad
+    // Initially hide the gallery section
+    gallerySection.style.display = 'none';
+
+    // Add click event listener to the Gallery menu item
+    galleryMenuItem.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        
+        // Hide launchpad if it's open
+        launchpadMenu.style.display = 'none';
+        
+        // Toggle the display of the gallery section
+        if (gallerySection.style.display === 'none') {
+            gallerySection.style.display = 'block';
+            loadProjects(); // Load projects when gallery is displayed
+        } else {
+            gallerySection.style.display = 'none';
+        }
+    });
+    
+    // Also add click event to Gallery icon in dock
+    if (galleryDockItem) {
+        galleryDockItem.addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // Hide launchpad if it's open
+            launchpadMenu.style.display = 'none';
+            
+            // Show gallery and load projects
+            gallerySection.style.display = 'block';
+            loadProjects();
+        });
+    }
+    
+    // Add close button functionality
+    const closeGallery = function() {
+        gallerySection.style.display = 'none';
+    };
+    
+    // Close gallery when clicking outside (optional)
+    document.addEventListener('click', function(event) {
+        if (gallerySection.style.display === 'block' && 
+            !gallerySection.contains(event.target) && 
+            !galleryMenuItem.contains(event.target) &&
+            (!galleryDockItem || !galleryDockItem.contains(event.target))) {
+            closeGallery();
+        }
+    });
+
     launchpad.addEventListener('click', function(event) {
         event.stopPropagation();
         if (launchpadMenu.style.display === 'none' || launchpadMenu.style.display === '') {
