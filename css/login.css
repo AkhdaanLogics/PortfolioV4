@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'San Francisco';
+    src: url('assets/fonts/SFPROREGULAR.OTF') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-image: url('../assets/macos-wp.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px);
+    z-index: 1;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form h5 {
+    text-align: center;
+    color: white;
+    margin-bottom: 8px;
+    font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.login-form img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.login-form input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    height: 10px;
+}
