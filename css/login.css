@@ -1,62 +1,58 @@
 @font-face {
-    font-family: 'San Francisco';
-    src: url('../assets/fonts/SFPROREGULAR.OTF') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'San Francisco';
+  src: url('../assets/fonts/SFPROREGULAR.OTF') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-image: url('../assets/macos-wp.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-image: url('../assets/macos-wp.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    backdrop-filter: blur(10px);
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  z-index: 1;
 }
 
 .login-form {
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
 }
 
 .login-container {
-    z-index: 1;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
+  z-index: 1;
 }
 
 .login-form h5 {
-    text-align: center;
-    color: white;
-    margin-bottom: 12px;
-    font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  text-align: center;
+  color: white;
+  margin-bottom: 12px;
+  font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
 .login-form img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin: 0 auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .input-with-btn {
@@ -79,143 +75,141 @@ body {
   background-color: rgba(170, 170, 170, 0.5);
   flex: 1; /* Input akan mengambil sisa ruang yang tersedia */
   min-width: 0;
-  text-align: left; /* Teks placeholder berada di tengah */
+  text-align: left; /* Teks placeholder berada di kiri */
 }
 
 /* From Uiverse.io by kheshore */ 
 .btn-conteiner {
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Add this to center vertically */
-    height: 30px; /* Match the input height (10px + 10px padding top/bottom + extra for visual alignment) */
-    --color-text: #ffffff;
-    --color-background: rgba(170, 170, 170, 0.5);
-    --color-outline: #9ee5fa80;
-    --color-shadow: #00000080;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Add this to center vertically */
+  height: 30px; /* Match the input height */
+  --color-text: #ffffff;
+  --color-background: rgba(170, 170, 170, 0.5);
+  --color-outline: #9ee5fa80;
+  --color-shadow: #00000080;
 }
-  
+
 .btn-content {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center content horizontally */
-    padding: 0px 3px;
-    height: 30px; /* Match input height */
-    text-decoration: none;
-    font-family: "Poppins", sans-serif;
-    font-size: 25px;
-    color: var(--color-text);
-    background: var(--color-background);
-    transition: 1s;
-    border-radius: 100px;
-    box-shadow: 0 0 0.2em 0 var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  padding: 0px 3px;
+  height: 30px; /* Match input height */
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: 1s;
+  border-radius: 100px;
+  box-shadow: 0 0 0.2em 0 var(--color-background);
 }
-  
-  .btn-content:hover,
-  .btn-content:focus {
-    transition: 0.5s;
-    -webkit-animation: btn-content 1s;
-    animation: btn-content 1s;
-    outline: 0.1em solid transparent;
-    outline-offset: 0.2em;
-    box-shadow: 0 0 0.4em 0 var(--color-background);
-  }
-  
-  .btn-content .icon-arrow {
-    transition: 0.5s;
-    margin-right: 0px;
-    transform: scale(0.6); /* Make the arrow smaller */
+
+.btn-content:hover,
+.btn-content:focus {
+  transition: 0.5s;
+  -webkit-animation: btn-content 1s;
+  animation: btn-content 1s;
+  outline: 0.1em solid transparent;
+  outline-offset: 0.2em;
+  box-shadow: 0 0 0.4em 0 var(--color-background);
 }
-  
-  .btn-content:hover .icon-arrow {
-    transition: 0.5s;
-    margin-right: 8px;
-  }
-  
-  .icon-arrow {
-    width: 20px;
-    height: 20px; /* Control height */
-    margin-left: 7px; /* Reduce left margin */
-    position: relative;
-    top: 0; /* Reset top position */
-    display: flex;
-    align-items: center;
+
+.btn-content .icon-arrow {
+  transition: 0.5s;
+  margin-right: 0px;
+  transform: scale(0.6); /* Make the arrow smaller */
+}
+
+.btn-content:hover .icon-arrow {
+  transition: 0.5s;
+  margin-right: 8px;
+}
+
+.icon-arrow {
+  width: 20px;
+  height: 20px; /* Control height */
+  margin-left: 7px; /* Reduce left margin */
+  position: relative;
+  top: 0; /* Reset top position */
+  display: flex;
+  align-items: center;
 }
 
 .icon-arrow svg {
-    height: 40px; /* Control SVG height */
-    width: 40px; /* Control SVG width */
-}
-  
-  /* SVG */
-  #arrow-icon-one {
-    transition: 0.4s;
-    transform: translateX(-60%);
-  }
-  
-  #arrow-icon-two {
-    transition: 0.5s;
-    transform: translateX(-30%);
-  }
-  
-  .btn-content:hover #arrow-icon-three {
-    animation: color_anim 1s infinite 0.2s;
-  }
-  
-  .btn-content:hover #arrow-icon-one {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.6s;
-  }
-  
-  .btn-content:hover #arrow-icon-two {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.4s;
-  }
-  
-  /* SVG animations */
-  @keyframes color_anim {
-    0% {
-      fill: white;
-    }
-  
-    50% {
-      fill: var(--color-background);
-    }
-  
-    100% {
-      fill: #ff5f5f;
-    }
-  }
-  
-  /* Button animations */
-  @-webkit-keyframes btn-content {
-    0% {
-      outline: 0.2em solid var(--color-background);
-      outline-offset: 0;
-    }
-  }
-  
-  @keyframes btn-content {
-    0% {
-      outline: 0.2em solid var(--color-background);
-      outline-offset: 0;
-    }
-  }
-  
-  .input-with-btn .logout {
-    background-color: rgba(170, 170, 170, 0.5);
-    width: 32px;
-    border-radius: 50%;
-    height: 32px;
-    border: none;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Efek shadow yang sama dengan tombol panah */
+  height: 40px; /* Control SVG height */
+  width: 40px; /* Control SVG width */
 }
 
+/* SVG */
+#arrow-icon-one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.btn-content:hover #arrow-icon-three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.btn-content:hover #arrow-icon-one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.btn-content:hover #arrow-icon-two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+@keyframes color_anim {
+  0% {
+      fill: white;
+  }
+  50% {
+      fill: var(--color-background);
+  }
+  100% {
+      fill: #ff5f5f;
+  }
+}
+
+/* Button animations */
+@-webkit-keyframes btn-content {
+  0% {
+      outline: 0.2em solid var(--color-background);
+      outline-offset: 0;
+  }
+}
+
+@keyframes btn-content {
+  0% {
+      outline: 0.2em solid var(--color-background);
+      outline-offset: 0;
+  }
+}
+
+.input-with-btn .logout {
+  background-color: rgba(170, 170, 170, 0.5);
+  width: 32px;
+  border-radius: 50%;
+  height: 32px;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Efek shadow yang sama dengan tombol panah */
+  text-decoration: none; /* Menghilangkan underline default pada link */
+}
 
 .input-with-btn .logout i {
-  font-size: 13px; /* Sesuaikan ukuran ikon */
+  font-size: 16px; /* Sesuaikan ukuran ikon */
 }
