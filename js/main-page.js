@@ -3,13 +3,44 @@ function updateTime() {
     document.getElementById('time').innerText = now.toLocaleTimeString();
 }
 
+const searchInput = document.getElementById('search-input');
+if (searchInput) {
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.toLowerCase();
+        const items = document.querySelectorAll('.launchpad-item');
+
+        let hasMatch = false;
+        items.forEach(function(item) {
+            const textElement = item.querySelector('p');
+            if (textElement) {
+                const text = textElement.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    hasMatch = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        });
+
+        // Kalau tidak ada yang cocok, bisa tampilkan pesan
+        const launchpadMenu = document.getElementById('launchpad-menu');
+        if (!hasMatch) {
+            launchpadMenu.innerHTML += `<div class="no-result">No matching apps found</div>`;
+        } else {
+            const noResult = document.querySelector('.no-result');
+            if (noResult) noResult.remove();
+        }
+    });
+}
+
+
 function updateBatteryStatus() {
     navigator.getBattery().then(function(battery) {
         const batteryLevel = Math.round(battery.level * 100);
         const batteryIcon = document.getElementById('battery');
         const batteryTooltip = document.getElementById('battery-tooltip');
         
-        // Update icon class based on battery level
         if (battery.charging) {
             batteryIcon.className = "bi bi-battery-charging";
             batteryTooltip.innerText = `Battery: ${batteryLevel}% (Charging)`;
@@ -24,7 +55,6 @@ function updateBatteryStatus() {
             batteryTooltip.innerText = `Battery: ${batteryLevel}%`;
         }
         
-        // Listen for battery events
         battery.addEventListener('levelchange', updateBatteryStatus);
         battery.addEventListener('chargingchange', updateBatteryStatus);
     });
@@ -34,12 +64,11 @@ function updateWifiStatus() {
     const wifiIcon = document.getElementById('wifi');
     const wifiTooltip = document.getElementById('wifi-tooltip');
 
-    // Check if the Network Information API is supported
     if ('connection' in navigator) {
         const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
         const isConnected = connection.effectiveType !== 'none';
-        const wifiLevel = connection.effectiveType; // Use effectiveType for connection quality
-        const networkName = connection.type; // Get the connection type
+        const wifiLevel = connection.effectiveType;
+        const networkName = connection.type;
 
         if (isConnected) {
             wifiIcon.className = "bi bi-wifi";
@@ -49,29 +78,32 @@ function updateWifiStatus() {
             wifiTooltip.innerText = "Wi-Fi: Disconnected";
         }
     } else {
-        // Fallback for browsers that do not support the Network Information API
         wifiIcon.className = "bi bi-wifi-off";
         wifiTooltip.innerText = "Wi-Fi: Disconnected";
     }
 }
 
-
-// Check if connection status changes (simulated)
 function checkConnectionChanges() {
-    // In a real application, you would use the Network Information API
-    // or other methods to detect actual changes
     setInterval(function() {
         updateWifiStatus();
-    }, 10000); // Check every 10 seconds
+    }, 10000);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('launchpad').addEventListener('click', function() {
+    document.getElementById('launchpad').addEventListener('click', function(event) {
+        event.stopPropagation();
         const launchpadMenu = document.getElementById('launchpad-menu');
         if (launchpadMenu.style.display === 'none' || launchpadMenu.style.display === '') {
-            launchpadMenu.style.display = 'block'; // Show the menu
+            launchpadMenu.style.display = 'block';
         } else {
-            launchpadMenu.style.display = 'none'; // Hide the menu
+            launchpadMenu.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('click', function(event) {
+        const launchpadMenu = document.getElementById('launchpad-menu');
+        if (launchpadMenu.style.display === 'block' && !launchpadMenu.contains(event.target)) {
+            launchpadMenu.style.display = 'none';
         }
     });
 
@@ -80,4 +112,4 @@ document.addEventListener('DOMContentLoaded', function() {
     updateBatteryStatus();
     updateWifiStatus();
     checkConnectionChanges();
-});
+})

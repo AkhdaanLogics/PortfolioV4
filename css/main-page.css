@@ -137,8 +137,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     padding: 20px;
     z-index: 100;
@@ -170,36 +170,45 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.launchpad-item .search-box {
+.search-box {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically if needed */
-    margin: 0 auto; /* Center the search box */
-    width: 300px; /* Set a specific width for the search box */
-
-
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 0;
+    justify-content: center; /* Menengahkan secara horizontal */
+    align-items: center; /* Menengahkan secara vertikal */
+    gap: 10px; /* Jarak antara input dan button */
+    margin: 0 auto; /* Menengahkan search-box di dalam launchpad-menu */
+    width: 100%; /* Lebar penuh */
+    margin-bottom: 20px;
+    max-width: 300px; /* Lebar maksimum */
 }
 
-.launchpad-item .search-box input {
+.search-box input {
     padding: 8px 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.1);
     color: rgba(0, 0, 0, 0.8);
     font-family: 'San Francisco';
     font-size: 14px;
-    width: 100%;
-    max-width: 300px;
+    width: 100%; /* Lebar input mengisi container */
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
 }
 
 .launchpad-item img {
     width: 60px;
     height: 60px;
     object-fit: contain;
+}
+
+.launchpad-item:hover img {
+    transform: scale(1.1);
+    transition: all 0.5s;
 }
 
 .launchpad-item p {
