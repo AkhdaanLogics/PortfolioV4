@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="css/main-page.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <script src="js/main-page.js"></script>
+    <script src="/js/main-page.js"></script>
 </head>
 <body>
     <div class="menu-bar">
@@ -101,25 +100,26 @@
     <div class="gallery-section" id="gallery">
         <!-- Window Controls -->
         <div class="window-controls">
-            <img src="assets/gallery/window-controls.png" alt="Close" class="window-control close" onclick="closeGallery()">
+            <div class="window-control close" onclick="closeGallery()"></div>
         </div>
-        
-        <!-- Container untuk Sidebar dan Konten Gallery -->
+
+        <!-- Container for Sidebar and Gallery Content -->
         <div class="container">
             <!-- Sidebar (Navigation Pane) -->
             <div class="navigation-pane">
                 <ul>
-                    <li><a href="#">Folder 1</a></li>
-                    <li><a href="#">Folder 2</a></li>
-                    <li><a href="#">Folder 3</a></li>
+                    <li><a href="#" class="active">All Projects</a></li>
+                    <li><a href="#">Web Apps</a></li>
+                    <li><a href="#">Mobile Apps</a></li>
+                    <li><a href="#">UI Designs</a></li>
                 </ul>
             </div>
-            
-            <!-- Konten Gallery (Slider) -->
+
+            <!-- Gallery Content (Slider) -->
             <div class="gallery-content">
                 <div class="slider">
                     <div class="slides" id="project-container">
-                        <!-- Slider items akan dimuat di sini -->
+                        <!-- Slides will be loaded here by JavaScript -->
                     </div>
                     <button class="prev">&#10094;</button>
                     <button class="next">&#10095;</button>

@@ -208,10 +208,8 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 1000px;
-  height: 80%;
-  max-height: 600px;
+  width: 50px;
+  height: 80px;
   z-index: 100;
   animation: fadeIn 0.3s;
 }
