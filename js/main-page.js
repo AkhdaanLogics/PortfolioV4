@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Get all the necessary elements
-  const launchpad = document.getElementById("launchpad");
-  const launchpadMenu = document.getElementById("launchpad-menu");
+
+  // Fix: Change the selector to target the correct menu item (3rd li element)
   const galleryMenuItem = document.querySelector(
-    ".menu-left li:nth-child(2) a"
+    ".menu-left li:nth-child(3) a"
   );
+
   const gallerySection = document.getElementById("gallery");
   const galleryDockItem = document.querySelector(".dock-item:nth-child(4) a"); // Gallery in dock
   const closeButton = document.querySelector(".window-control.close");
@@ -137,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to close gallery
   function closeGallery() {
+    console.log("Closing gallery..."); // Debug log
     if (gallerySection) {
       gallerySection.style.display = "none";
     }
@@ -144,22 +146,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Setup event listeners
 
+  // Fix: Add a debug log to check if gallery menu item is found
+  console.log("Gallery menu item:", galleryMenuItem);
+
   // Open gallery from menu bar
   if (galleryMenuItem) {
     galleryMenuItem.addEventListener("click", function (event) {
       event.preventDefault();
-      if (launchpadMenu) launchpadMenu.style.display = "none";
+      console.log("Gallery menu item clicked"); // Debug log
       showGallery();
     });
+  } else {
+    console.log("Gallery menu item not found!"); // Debug log
   }
 
   // Open gallery from dock
   if (galleryDockItem) {
     galleryDockItem.addEventListener("click", function (event) {
       event.preventDefault();
-      if (launchpadMenu) launchpadMenu.style.display = "none";
+      console.log("Gallery dock item clicked"); // Debug log
       showGallery();
     });
+  } else {
+    console.log("Gallery dock item not found!"); // Debug log
   }
 
   // Close gallery with close button
@@ -167,36 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
     closeButton.addEventListener("click", closeGallery);
   }
 
-  // Open launchpad
-  if (launchpad && launchpadMenu) {
-    launchpad.addEventListener("click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      if (
-        launchpadMenu.style.display === "none" ||
-        launchpadMenu.style.display === ""
-      ) {
-        launchpadMenu.style.display = "block";
-        if (gallerySection) gallerySection.style.display = "none";
-      } else {
-        launchpadMenu.style.display = "none";
-      }
-    });
-  }
-
   // Close when clicking outside
   document.addEventListener("click", function (event) {
-    // Close launchpad when clicking outside
-    if (
-      launchpadMenu &&
-      launchpadMenu.style.display === "block" &&
-      !launchpadMenu.contains(event.target) &&
-      event.target !== launchpad
-    ) {
-      launchpadMenu.style.display = "none";
-    }
-
     // Close gallery when clicking outside (but not on gallery controls)
     if (
       gallerySection &&
@@ -208,39 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
       closeGallery();
     }
   });
-
-  // Filter apps in launchpad
-  if (searchInput) {
-    searchInput.addEventListener("input", filterApps);
-  }
-
-  if (searchButton) {
-    searchButton.addEventListener("click", filterApps);
-  }
-
-  function filterApps() {
-    const filter = searchInput.value.toLowerCase();
-    const items = document.querySelectorAll(".launchpad-item");
-    let hasMatch = false;
-
-    items.forEach(function (item) {
-      const textElement = item.querySelector("p");
-      if (textElement) {
-        const text = textElement.textContent.toLowerCase();
-        if (text.includes(filter)) {
-          item.style.display = "";
-          hasMatch = true;
-        } else {
-          item.style.display = "none";
-        }
-      }
-    });
-
-    const noResult = document.querySelector(".no-result");
-    if (noResult) {
-      noResult.style.display = hasMatch ? "none" : "block";
-    }
-  }
 
   // Initialize time updates
   function updateTime() {
