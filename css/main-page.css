@@ -310,37 +310,16 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .gallery-sidebar {
-    width: 180px;
-  }
-
   .project-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
 
 @media screen and (max-width: 576px) {
-  .gallery-container {
-    flex-direction: column;
-  }
-
-  .gallery-sidebar {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-    border-right: none;
-    border-bottom: 1px solid #e1e1e1;
-  }
-
-  .sidebar-section {
-    margin-bottom: 15px;
-  }
-
   .project-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }
-
 @media screen and (max-width: 400px) {
   .dock {
     padding: 7px 10px;
@@ -410,13 +389,27 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  width: 80%;
-  max-width: 800px;
+  width: 100%; /* Ensure full width */
+  max-width: 1000px; /* Set a maximum width */
   height: 80%;
   max-height: 600px;
   overflow: hidden;
   z-index: 100;
   animation: fadeIn 0.3s;
+}
+
+.gallery-container {
+  display: flex; /* Use flexbox for layout */
+  flex: 1; /* Allow it to grow */
+}
+
+.project-grid {
+  display: grid; /* Use grid layout for projects */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(240px, 1fr)
+  ); /* Responsive grid */
+  gap: 16px; /* Add spacing between items */
 }
 
 .window-controls {
@@ -677,18 +670,29 @@ body {
 .project-card {
   border-radius: 10px;
   overflow: hidden;
-  padding: 15px;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  aspect-ratio: 1;
+  position: relative;
+  aspect-ratio: 16/9; /* Create rectangular shape instead of square */
+  padding: 0; /* Remove padding */
+  margin-bottom: 15px;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover .card-title {
+  opacity: 1; /* Show on hover */
+}
+
+.project-grid {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Lebar card lebih besar */
+  gap: 20px; /* Jarak antar card */
 }
 
 .project-link {
@@ -730,28 +734,46 @@ body {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 15px;
 }
 
 .card-icon {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 15px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0; /* Remove padding to allow image to fill card */
 }
 
 .card-icon img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0; /* Remove image border radius so it fills card completely */
 }
 
 .card-title {
-  font-size: 12px;
-  font-weight: 500;
+  position: absolute;
+  top: 0px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
   color: white;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0; /* Hide by default */
+  transition: opacity 0.3s ease;
+  padding: 0 10px;
   text-align: center;
+}
+
+.bi {
+  margin-right: 10px;
 }
