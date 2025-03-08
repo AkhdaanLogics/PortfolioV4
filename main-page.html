@@ -1,154 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Page</title>
-    <link rel="stylesheet" href="css/main-page.css">
+    <link rel="stylesheet" href="css/main-page.css" />
     <script src="/js/main-page.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="menu-bar">
-        <div class="menu-left">
-            <ul>
-                <img src="assets/menu-bar/apple.png" alt="Apple Logo">
-                <li>
-                    <a href="#">
-                        <span class="active">Akhdaan Portfolio</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span>Gallery</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span>About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span>Contact</span>
-                    </a>
-                </li>
-            </ul>
+      <div class="menu-left">
+        <ul>
+          <img src="assets/menu-bar/apple.png" alt="Apple Logo" />
+          <li>
+            <a href="#">
+              <span class="active">Akhdaan Portfolio</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Gallery</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>About</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="menu-right">
+        <div class="status-icon">
+          <i class="bi bi-wifi" id="wifi"></i>
+          <span class="tooltip" id="wifi-tooltip">Wi-Fi: Connected</span>
         </div>
-        <div class="menu-right">
-            <div class="status-icon">
-                <i class="bi bi-wifi" id="wifi"></i>
-                <span class="tooltip" id="wifi-tooltip">Wi-Fi: Connected</span>
-            </div>
-            <div class="status-icon">
-                <i class="bi bi-battery-full" id="battery"></i>
-                <span class="tooltip" id="battery-tooltip">Battery: 100%</span>
-            </div>
-            <span class="time" id="time">Time: Loading...</span>
+        <div class="status-icon">
+          <i class="bi bi-battery-full" id="battery"></i>
+          <span class="tooltip" id="battery-tooltip">Battery: 100%</span>
         </div>
+        <span class="time" id="time">Time: Loading...</span>
+      </div>
     </div>
 
     <div class="dock">
-        <div class="dock-item" id="launchpad">
-            <a href="#">
-                <img src="assets/mac-apps/launchpad.png" alt="Launchpad">
-            </a>
-        </div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/spotify.png" alt="Spotify">
-            </a>
-        </div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/appstore.png" alt="App Store">
-            </a>
-        </div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/gallery.png" alt="Gallery">
-            </a>
-        </div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/mail.png" alt="Mail">
-            </a>
-        </div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/discord.png" alt="Discord">
-            </a>
-        </div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/settings.png" alt="Settings">
-            </a>
-        </div>
-        <div class="separator"></div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/folder.png" alt="Folder">
-            </a>
-        </div>
-        <div class="dock-item">
-            <a href="#">
-                <img src="assets/mac-apps/trash.png" alt="Trash">
-            </a>
-        </div>
+      <div class="dock-item" id="launchpad">
+        <a href="#">
+          <img src="assets/mac-apps/launchpad.png" alt="Launchpad" />
+        </a>
+      </div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/spotify.png" alt="Spotify" />
+        </a>
+      </div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/appstore.png" alt="App Store" />
+        </a>
+      </div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/gallery.png" alt="Gallery" />
+        </a>
+      </div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/mail.png" alt="Mail" />
+        </a>
+      </div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/discord.png" alt="Discord" />
+        </a>
+      </div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/settings.png" alt="Settings" />
+        </a>
+      </div>
+      <div class="separator"></div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/folder.png" alt="Folder" />
+        </a>
+      </div>
+      <div class="dock-item">
+        <a href="#">
+          <img src="assets/mac-apps/trash.png" alt="Trash" />
+        </a>
+      </div>
     </div>
 
     <!-- Gallery Section -->
     <div class="gallery-section" id="gallery">
-        <!-- Window Controls -->
-        <div class="window-controls">
-            <div class="window-control close" onclick="closeGallery()"></div>
+      <!-- Window Controls -->
+      <div class="window-controls">
+        <div class="window-control close"></div>
+        <div class="window-control minimize"></div>
+        <div class="window-control expand"></div>
+        <div class="window-title">Gallery</div>
+      </div>
+
+      <!-- Container for Gallery Content -->
+      <div class="gallery-container">
+        <!-- Sidebar -->
+        <div class="gallery-sidebar">
+          <div class="sidebar-section">
+            <h3>Categories</h3>
+            <ul>
+              <li class="active">
+                <img src="assets/gallery/icons/all.png" alt="All" /> All
+                Projects
+              </li>
+              <li>
+                <img src="assets/gallery/icons/web.png" alt="Web" /> Web Apps
+              </li>
+              <li>
+                <img src="assets/gallery/icons/mobile.png" alt="Mobile" />
+                Mobile Apps
+              </li>
+              <li>
+                <img src="assets/gallery/icons/design.png" alt="Design" /> UI
+                Designs
+              </li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <h3>Shortcuts</h3>
+            <ul>
+              <li>
+                <img src="assets/gallery/icons/recent.png" alt="Recent" />
+                Recent
+              </li>
+              <li>
+                <img src="assets/gallery/icons/featured.png" alt="Featured" />
+                Featured
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Container for Sidebar and Gallery Content -->
-        <div class="container">
-            <!-- Sidebar (Navigation Pane) -->
-            <div class="navigation-pane">
-                <ul>
-                    <li><a href="#" class="active">All Projects</a></li>
-                    <li><a href="#">Web Apps</a></li>
-                    <li><a href="#">Mobile Apps</a></li>
-                    <li><a href="#">UI Designs</a></li>
-                </ul>
+        <!-- Main Content -->
+        <div class="gallery-content">
+          <div class="search-container">
+            <input
+              type="text"
+              placeholder="Search gallery..."
+              class="gallery-search"
+            />
+          </div>
+
+          <!-- Projects Section -->
+          <div class="projects-section">
+            <div class="section-header">
+              <h2>Web Applications</h2>
+              <a href="#" class="see-all">See All</a>
             </div>
 
-            <!-- Gallery Content (Slider) -->
-            <div class="gallery-content">
-                <div class="slider">
-                    <div class="slides" id="project-container">
-                        <!-- Slides will be loaded here by JavaScript -->
-                    </div>
-                    <button class="prev">&#10094;</button>
-                    <button class="next">&#10095;</button>
+            <div class="project-grid">
+              <!-- Project Cards -->
+              <div class="project-card" style="background-color: #ff6b6b">
+                <div class="card-icon">
+                  <img src="assets/gallery/notetify.png" alt="Notetify" />
                 </div>
+                <div class="card-title">Notetify</div>
+              </div>
+
+              <div class="project-card" style="background-color: #4ecdc4">
+                <div class="card-icon">
+                  <img src="assets/gallery/sulaptugas.png" alt="Sulap Tugas" />
+                </div>
+                <div class="card-title">Sulap Tugas</div>
+              </div>
+
+              <div class="project-card" style="background-color: #ffd166">
+                <div class="card-icon">
+                  <img src="assets/gallery/placeholder.png" alt="Weather App" />
+                </div>
+                <div class="card-title">Weather App</div>
+              </div>
+
+              <div class="project-card" style="background-color: #6a0572">
+                <div class="card-icon">
+                  <img src="assets/gallery/placeholder.png" alt="Portfolio" />
+                </div>
+                <div class="card-title">Portfolio</div>
+              </div>
             </div>
+          </div>
+
+          <!-- Mobile Apps Section -->
+          <div class="projects-section">
+            <div class="section-header">
+              <h2>Mobile Applications</h2>
+              <a href="#" class="see-all">See All</a>
+            </div>
+
+            <div class="project-grid">
+              <!-- Project Cards -->
+              <div class="project-card" style="background-color: #118ab2">
+                <div class="card-icon">
+                  <img
+                    src="assets/gallery/placeholder.png"
+                    alt="Fitness Tracker"
+                  />
+                </div>
+                <div class="card-title">Fitness Tracker</div>
+              </div>
+
+              <div class="project-card" style="background-color: #073b4c">
+                <div class="card-icon">
+                  <img src="assets/gallery/placeholder.png" alt="Chat App" />
+                </div>
+                <div class="card-title">Chat App</div>
+              </div>
+
+              <div class="project-card" style="background-color: #06d6a0">
+                <div class="card-icon">
+                  <img
+                    src="assets/gallery/placeholder.png"
+                    alt="Food Delivery"
+                  />
+                </div>
+                <div class="card-title">Food Delivery</div>
+              </div>
+
+              <div class="project-card" style="background-color: #ef476f">
+                <div class="card-icon">
+                  <img
+                    src="assets/gallery/placeholder.png"
+                    alt="Music Player"
+                  />
+                </div>
+                <div class="card-title">Music Player</div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Launchpad Menu -->
     <div class="launchpad-menu" id="launchpad-menu">
-        <div class="search-box">
-            <input type="text" id="search-input" placeholder="Search">
-            <button id="search-button" type="button">
-                <i class="bi bi-search"></i>
-            </button>
-        </div>
-        <div class="no-result" style="display: none; text-align: center; padding: 20px;">
-            No matching apps found
-        </div>
-        <div class="launchpad-item"><img src="assets/mac-apps/spotify.png" alt="Spotify"><p>Spotify</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/appstore.png" alt="App Store"><p>App Store</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/gallery.png" alt="Gallery"><p>Gallery</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/mail.png" alt="Mail"><p>Mail</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/discord.png" alt="Discord"><p>Discord</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/settings.png" alt="Settings"><p>Settings</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/maps.png" alt="Maps"><p>Maps</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/callendar.png" alt="Calendar"><p>Calendar</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/terminal.png" alt="Terminal"><p>Terminal</p></div>
-        <div class="launchpad-item"><img src="assets/mac-apps/textedit.png" alt="Text Editor"><p>Text Editor</p></div>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search" />
+        <button id="search-button" type="button">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+      <div
+        class="no-result"
+        style="display: none; text-align: center; padding: 20px"
+      >
+        No matching apps found
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/spotify.png" alt="Spotify" />
+        <p>Spotify</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/appstore.png" alt="App Store" />
+        <p>App Store</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/gallery.png" alt="Gallery" />
+        <p>Gallery</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/mail.png" alt="Mail" />
+        <p>Mail</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/discord.png" alt="Discord" />
+        <p>Discord</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/settings.png" alt="Settings" />
+        <p>Settings</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/maps.png" alt="Maps" />
+        <p>Maps</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/callendar.png" alt="Calendar" />
+        <p>Calendar</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/terminal.png" alt="Terminal" />
+        <p>Terminal</p>
+      </div>
+      <div class="launchpad-item">
+        <img src="assets/mac-apps/textedit.png" alt="Text Editor" />
+        <p>Text Editor</p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
